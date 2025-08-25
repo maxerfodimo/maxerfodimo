@@ -1,5 +1,6 @@
 import React from "react"
-import Analytics from '../components/Analytics'
+import CustomAnalytics from '../components/Analytics'
+import { Analytics } from "@vercel/analytics/next"
 
 export default function RootLayout({
     children,
@@ -71,6 +72,7 @@ export default function RootLayout({
           
           {children}
           <Analytics />
+          <CustomAnalytics />
         </body>
       </html>
     )
