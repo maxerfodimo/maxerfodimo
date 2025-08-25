@@ -15,8 +15,10 @@ export const useGoogleAnalytics = () => {
 
   // Track page views on route changes
   useEffect(() => {
-    const url = pathname + searchParams.toString();
-    pageview(url);
+    if (pathname) {
+      const url = pathname + (searchParams ? searchParams.toString() : '');
+      pageview(url);
+    }
   }, [pathname, searchParams]);
 
   // Function to track custom events

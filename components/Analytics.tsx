@@ -1,10 +1,19 @@
 'use client';
 
+import { Suspense } from 'react';
 import { useGoogleAnalytics } from '../hooks/useGoogleAnalytics';
 
-export default function Analytics() {
+function AnalyticsInner() {
   // Initialize Google Analytics
   useGoogleAnalytics();
   
   return null; // This component doesn't render anything
+}
+
+export default function Analytics() {
+  return (
+    <Suspense fallback={null}>
+      <AnalyticsInner />
+    </Suspense>
+  );
 } 
