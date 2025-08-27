@@ -12,7 +12,7 @@ export default function Page() {
         fontFamily: "Georgia",
       }}
     >
-      <h1 style={{ marginBottom: "20px" }}>Max Erfodimo</h1>
+      
       <div
         style={{
           display: "flex",
@@ -23,8 +23,8 @@ export default function Page() {
           gap: "10px",
         }}
       >
-        <div>Stay focused...</div>
-        <div> the result will come</div>
+        <h1 style={{textAlign: "center"}}>Stay focused...<br /> the result will come</h1>
+        <h3  style={{ marginTop: "20px", marginLeft: "auto" }}>Max Erfodimo</h3>
       </div>
     </div>
   );
