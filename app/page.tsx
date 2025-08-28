@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 export default function Page() {
   return (
@@ -10,8 +11,36 @@ export default function Page() {
         flexDirection: "column",
         minHeight: "90vh",
         fontFamily: "Georgia",
+        position: "relative",
       }}
     >
+      {/* Navigation Links */}
+      <div style={{ 
+        position: "absolute", 
+        top: "20px", 
+        right: "20px",
+        display: "flex",
+        gap: "20px"
+      }}>
+        <Link href="/about" style={{ 
+          textDecoration: "none", 
+          color: "#333", 
+          fontSize: "14px",
+          opacity: "0.7",
+          transition: "opacity 0.3s ease"
+        }}>
+          about
+        </Link>
+        <Link href="/inspiration" style={{ 
+          textDecoration: "none", 
+          color: "#333", 
+          fontSize: "14px",
+          opacity: "0.7",
+          transition: "opacity 0.3s ease"
+        }}>
+          more inspiration
+        </Link>
+      </div>
       
       <div
         style={{
