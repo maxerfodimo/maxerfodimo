@@ -1,5 +1,35 @@
 import React from "react";
 import Link from "next/link";
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'About Focus - The Importance of Staying Focused in the Digital Age | Max Erfodimo',
+  description: 'Learn why focus is crucial in today\'s digital world. Discover how social media affects concentration and get practical tips for maintaining discipline and staying focused on your goals.',
+  keywords: 'focus, discipline, concentration, productivity, social media distraction, digital focus, mental discipline, goal achievement, mindfulness, distraction management',
+  openGraph: {
+    title: 'About Focus - The Importance of Staying Focused in the Digital Age',
+    description: 'Learn why focus is crucial in today\'s digital world. Discover how social media affects concentration and get practical tips for maintaining discipline.',
+    type: 'article',
+    url: 'https://maxerfodimo.com/about',
+    images: [
+      {
+        url: 'https://maxerfodimo.com/images/maxerfodimo.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'About Focus - Importance of Concentration and Discipline',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About Focus - The Importance of Staying Focused in the Digital Age',
+    description: 'Learn why focus is crucial in today\'s digital world. Discover how social media affects concentration and get practical tips for maintaining discipline.',
+    images: ['https://maxerfodimo.com/images/maxerfodimo.jpg'],
+  },
+  alternates: {
+    canonical: 'https://maxerfodimo.com/about',
+  },
+}
 
 export default function AboutPage() {
   return (

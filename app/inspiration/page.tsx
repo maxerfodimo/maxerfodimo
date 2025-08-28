@@ -1,5 +1,35 @@
 import React from "react";
 import Link from "next/link";
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Focus & Discipline Quotes - Motivational Inspiration for Success | Max Erfodimo',
+  description: 'Discover powerful quotes about focus, discipline, and success. Get inspired with motivational wisdom from Max Erfodimo and learn how to maintain concentration and achieve your goals.',
+  keywords: 'focus quotes, discipline quotes, motivational quotes, success quotes, concentration quotes, mental discipline, goal achievement, productivity quotes, inspiration, motivation, focus tips',
+  openGraph: {
+    title: 'Focus & Discipline Quotes - Motivational Inspiration for Success',
+    description: 'Discover powerful quotes about focus, discipline, and success. Get inspired with motivational wisdom from Max Erfodimo.',
+    type: 'article',
+    url: 'https://maxerfodimo.com/inspiration',
+    images: [
+      {
+        url: 'https://maxerfodimo.com/images/maxerfodimo.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Focus & Discipline Quotes - Motivational Inspiration',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Focus & Discipline Quotes - Motivational Inspiration for Success',
+    description: 'Discover powerful quotes about focus, discipline, and success. Get inspired with motivational wisdom from Max Erfodimo.',
+    images: ['https://maxerfodimo.com/images/maxerfodimo.jpg'],
+  },
+  alternates: {
+    canonical: 'https://maxerfodimo.com/inspiration',
+  },
+}
 
 export default function InspirationPage() {
   const quotes = [
