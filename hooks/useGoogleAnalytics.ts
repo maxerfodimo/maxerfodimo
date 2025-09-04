@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { pageview, event } from '../lib/gtag';
 
@@ -12,27 +12,38 @@ declare global {
 export const useGoogleAnalytics = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const [isClient, setIsClient] = useState(false);
 
-  // Track page views on route changes
+  // Ensure we're on the client side
   useEffect(() => {
-    if (pathname) {
+    setIsClient(true);
+  }, []);
+
+  // Track page views on route changes (only on client)
+  useEffect(() => {
+    if (isClient && pathname && typeof window !== 'undefined') {
       const url = pathname + (searchParams ? searchParams.toString() : '');
       pageview(url);
     }
-  }, [pathname, searchParams]);
+  }, [isClient, pathname, searchParams]);
 
   // Function to track custom events
   const trackEvent = (action: string, category: string, label?: string, value?: number) => {
-    event({ action, category, label, value });
+    if (isClient && typeof window !== 'undefined') {
+      event({ action, category, label, value });
+    }
   };
 
   // Function to track page views manually
   const trackPageView = (url: string) => {
-    pageview(url);
+    if (isClient && typeof window !== 'undefined') {
+      pageview(url);
+    }
   };
 
   return {
     trackEvent,
     trackPageView,
+    isClient,
   };
 }; 
