@@ -69,7 +69,7 @@ export default function RootLayout({
           {/* Analytics scripts moved to client-only component */}
           <StructuredData />
         </head>
-        <body>
+        <body style={{ minHeight: "100vh" }}>
           {/* Google Tag Manager (noscript) - This is safe for SSR */}
           <noscript>
             <iframe 

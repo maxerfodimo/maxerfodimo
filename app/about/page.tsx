@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "next/link";
+import ClientNavigation from "../../components/ClientNavigation";
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -33,102 +33,19 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        minHeight: "100vh",
-        fontFamily: "Georgia",
-        padding: "40px",
-        maxWidth: "800px",
-        margin: "0 auto",
-        lineHeight: "1.6",
-      }}
-    >
-      {/* Navigation */}
-      <div style={{ 
-        position: "absolute", 
-        top: "20px", 
-        right: "20px",
-        display: "flex",
-        gap: "15px",
-        flexWrap: "wrap",
-        maxWidth: "300px"
-      }}>
-        <Link href="/dreams" style={{ 
-          textDecoration: "none", 
-          color: "#333", 
-          fontSize: "12px",
-          opacity: "0.7",
-          transition: "opacity 0.3s ease"
-        }}>
-          dreams
-        </Link>
-        <Link href="/plans" style={{ 
-          textDecoration: "none", 
-          color: "#333", 
-          fontSize: "12px",
-          opacity: "0.7",
-          transition: "opacity 0.3s ease"
-        }}>
-          plans
-        </Link>
-        <Link href="/focus" style={{ 
-          textDecoration: "none", 
-          color: "#333", 
-          fontSize: "12px",
-          opacity: "0.7",
-          transition: "opacity 0.3s ease"
-        }}>
-          focus
-        </Link>
-        <Link href="/discipline" style={{ 
-          textDecoration: "none", 
-          color: "#333", 
-          fontSize: "12px",
-          opacity: "0.7",
-          transition: "opacity 0.3s ease"
-        }}>
-          discipline
-        </Link>
-        <Link href="/motivation" style={{ 
-          textDecoration: "none", 
-          color: "#333", 
-          fontSize: "12px",
-          opacity: "0.7",
-          transition: "opacity 0.3s ease"
-        }}>
-          motivation
-        </Link>
-        <Link href="/about" style={{ 
-          textDecoration: "none", 
-          color: "#333", 
-          fontSize: "12px",
-          opacity: "1",
-          fontWeight: "bold",
-          transition: "opacity 0.3s ease"
-        }}>
-          about
-        </Link>
-        <Link href="/inspiration" style={{ 
-          textDecoration: "none", 
-          color: "#333", 
-          fontSize: "12px",
-          opacity: "0.7",
-          transition: "opacity 0.3s ease"
-        }}>
-          more inspiration
-        </Link>
-        <Link href="/" style={{ 
-          textDecoration: "none", 
-          color: "#333", 
-          fontSize: "12px",
-          opacity: "0.7",
-          transition: "opacity 0.3s ease"
-        }}>
-          home
-        </Link>
-      </div>
+    <>
+      <ClientNavigation />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          fontFamily: "Georgia",
+          padding: "40px",
+          maxWidth: "800px",
+          margin: "0 auto",
+          lineHeight: "1.6",
+        }}
+      >
 
       <h1 style={{ 
         textAlign: "center", 
@@ -203,6 +120,7 @@ export default function AboutPage() {
           — Max Erfodimo
         </p>
       </div>
-    </div>
+      </div>
+    </>
   );
 } 

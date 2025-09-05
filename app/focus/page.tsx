@@ -1,104 +1,20 @@
 import React from "react";
-import Link from "next/link";
+import ClientNavigation from "../../components/ClientNavigation";
 
 export default function FocusPage() {
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        flexDirection: "column",
-        minHeight: "90vh",
-        fontFamily: "Georgia",
-        position: "relative",
-        padding: "20px",
-      }}
-    >
-      {/* Navigation Links */}
-      <div style={{ 
-        position: "absolute", 
-        top: "20px", 
-        right: "20px",
-        display: "flex",
-        gap: "15px",
-        flexWrap: "wrap",
-        maxWidth: "300px"
-      }}>
-        <Link href="/dreams" style={{ 
-          textDecoration: "none", 
-          color: "#333", 
-          fontSize: "12px",
-          opacity: "0.7",
-          transition: "opacity 0.3s ease"
-        }}>
-          dreams
-        </Link>
-        <Link href="/plans" style={{ 
-          textDecoration: "none", 
-          color: "#333", 
-          fontSize: "12px",
-          opacity: "0.7",
-          transition: "opacity 0.3s ease"
-        }}>
-          plans
-        </Link>
-        <Link href="/focus" style={{ 
-          textDecoration: "none", 
-          color: "#333", 
-          fontSize: "12px",
-          opacity: "1",
-          fontWeight: "bold",
-          transition: "opacity 0.3s ease"
-        }}>
-          focus
-        </Link>
-        <Link href="/discipline" style={{ 
-          textDecoration: "none", 
-          color: "#333", 
-          fontSize: "12px",
-          opacity: "0.7",
-          transition: "opacity 0.3s ease"
-        }}>
-          discipline
-        </Link>
-        <Link href="/motivation" style={{ 
-          textDecoration: "none", 
-          color: "#333", 
-          fontSize: "12px",
-          opacity: "0.7",
-          transition: "opacity 0.3s ease"
-        }}>
-          motivation
-        </Link>
-        <Link href="/about" style={{ 
-          textDecoration: "none", 
-          color: "#333", 
-          fontSize: "12px",
-          opacity: "0.7",
-          transition: "opacity 0.3s ease"
-        }}>
-          about
-        </Link>
-        <Link href="/inspiration" style={{ 
-          textDecoration: "none", 
-          color: "#333", 
-          fontSize: "12px",
-          opacity: "0.7",
-          transition: "opacity 0.3s ease"
-        }}>
-          more inspiration
-        </Link>
-        <Link href="/" style={{ 
-          textDecoration: "none", 
-          color: "#333", 
-          fontSize: "12px",
-          opacity: "0.7",
-          transition: "opacity 0.3s ease"
-        }}>
-          home
-        </Link>
-      </div>
+    <>
+      <ClientNavigation />
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+          fontFamily: "Georgia",
+          padding: "20px",
+        }}
+      >
       
       <div
         style={{
@@ -128,10 +44,12 @@ export default function FocusPage() {
           lineHeight: "1.6",
           color: "#666"
         }}>
-          <p>This page is coming soon...</p>
-          <p>Here you will find content about focus and concentration.</p>
+          <p>Close your eyes at the end of your day and think if you have done everything to get your goal. Keep focusing on your goal.</p>
+          <br/>
+          <p>When you have motivation, you will start moving toward your goal; when you have discipline, you will keep going until you reach it; when you have focus, you will not lose your direction; and when you combine all of them, nothing in this world will be beyond your reach.</p>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }
