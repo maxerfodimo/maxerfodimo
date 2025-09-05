@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-export default function Page() {
+export default function MotivationPage() {
   return (
     <div
       style={{
@@ -12,6 +12,7 @@ export default function Page() {
         minHeight: "90vh",
         fontFamily: "Georgia",
         position: "relative",
+        padding: "20px",
       }}
     >
       {/* Navigation Links */}
@@ -64,7 +65,8 @@ export default function Page() {
           textDecoration: "none", 
           color: "#333", 
           fontSize: "12px",
-          opacity: "0.7",
+          opacity: "1",
+          fontWeight: "bold",
           transition: "opacity 0.3s ease"
         }}>
           motivation
@@ -87,6 +89,15 @@ export default function Page() {
         }}>
           more inspiration
         </Link>
+        <Link href="/" style={{ 
+          textDecoration: "none", 
+          color: "#333", 
+          fontSize: "12px",
+          opacity: "0.7",
+          transition: "opacity 0.3s ease"
+        }}>
+          home
+        </Link>
       </div>
       
       <div
@@ -96,8 +107,9 @@ export default function Page() {
           alignItems: "center",
           flexDirection: "column",
           fontSize: "24px",
-          gap: "10px",
+          gap: "20px",
           padding: "0 8px",
+          textAlign: "center",
         }}
       >
         <h1 style={{
@@ -107,15 +119,18 @@ export default function Page() {
           margin: "0",
           padding: "0 10px"
         }}>
-          Stay focused...<br /> the result will come
+          Motivation
         </h1>
-        <h3 style={{ 
-          marginTop: "20px", 
-          marginLeft: "auto",
-          fontSize: "clamp(1.5rem, 3vw, 2rem)"
+        
+        <div style={{
+          maxWidth: "600px",
+          fontSize: "18px",
+          lineHeight: "1.6",
+          color: "#666"
         }}>
-          Max Erfodimo
-        </h3>
+          <p>This page is coming soon...</p>
+          <p>Here you will find content about motivation and inspiration.</p>
+        </div>
       </div>
     </div>
   );
