@@ -45,6 +45,10 @@ export default function MotivationPage() {
           color: "#666"
         }}>
           <p>Use motivation for your goals. If you don't have it, use discipline, but never— "maybe later".</p>
+        <br />
+        <p>If you don't know why you wake up in the morning, maybe you should sleep a bit longer.</p>
+        <br />
+        <p>Don't take the fear of failure on your trip for success.</p>
         </div>
       </div>
       </div>
