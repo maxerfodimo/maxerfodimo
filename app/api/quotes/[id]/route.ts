@@ -5,12 +5,13 @@ import { Quote } from '@/lib/models/Quote';
 // GET /api/quotes/[id] - Get a specific quote by ID
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await connectDB();
     
-    const quote = await Quote.findById(params.id);
+    const { id } = await params;
+    const quote = await Quote.findById(id);
     
     if (!quote) {
       return NextResponse.json(
@@ -36,11 +37,12 @@ export async function GET(
 // PUT /api/quotes/[id] - Update a specific quote
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await connectDB();
     
+    const { id } = await params;
     const body = await request.json();
     const { text, author, theme } = body;
 
@@ -50,7 +52,7 @@ export async function PUT(
     if (theme !== undefined) updateData.theme = theme.toLowerCase();
 
     const quote = await Quote.findByIdAndUpdate(
-      params.id,
+      id,
       updateData,
       { new: true, runValidators: true }
     );
@@ -79,12 +81,13 @@ export async function PUT(
 // DELETE /api/quotes/[id] - Delete a specific quote
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     await connectDB();
     
-    const quote = await Quote.findByIdAndDelete(params.id);
+    const { id } = await params;
+    const quote = await Quote.findByIdAndDelete(id);
     
     if (!quote) {
       return NextResponse.json(
