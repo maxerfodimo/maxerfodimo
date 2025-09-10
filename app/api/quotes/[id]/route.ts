@@ -1,6 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import connectDB from '@/lib/mongoose';
-import { Quote } from '@/lib/models/Quote';
 
 // GET /api/quotes/[id] - Get a specific quote by ID
 export async function GET(
@@ -8,6 +6,17 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    // Check if MongoDB is configured
+    if (!process.env.MONGODB_URI) {
+      return NextResponse.json(
+        { success: false, error: 'MongoDB not configured' },
+        { status: 503 }
+      );
+    }
+
+    const connectDB = (await import('@/lib/mongoose')).default;
+    const { Quote } = await import('@/lib/models/Quote');
+    
     await connectDB();
     
     const { id } = await params;
@@ -40,6 +49,17 @@ export async function PUT(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    // Check if MongoDB is configured
+    if (!process.env.MONGODB_URI) {
+      return NextResponse.json(
+        { success: false, error: 'MongoDB not configured' },
+        { status: 503 }
+      );
+    }
+
+    const connectDB = (await import('@/lib/mongoose')).default;
+    const { Quote } = await import('@/lib/models/Quote');
+    
     await connectDB();
     
     const { id } = await params;
@@ -84,6 +104,17 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    // Check if MongoDB is configured
+    if (!process.env.MONGODB_URI) {
+      return NextResponse.json(
+        { success: false, error: 'MongoDB not configured' },
+        { status: 503 }
+      );
+    }
+
+    const connectDB = (await import('@/lib/mongoose')).default;
+    const { Quote } = await import('@/lib/models/Quote');
+    
     await connectDB();
     
     const { id } = await params;

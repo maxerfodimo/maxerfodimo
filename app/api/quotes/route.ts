@@ -1,10 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
-import connectDB from '@/lib/mongoose';
-import { Quote } from '@/lib/models/Quote';
 
 // GET /api/quotes - Get all quotes
 export async function GET(request: NextRequest) {
   try {
+    // Check if MongoDB is configured
+    if (!process.env.MONGODB_URI) {
+      return NextResponse.json(
+        { success: false, error: 'MongoDB not configured' },
+        { status: 503 }
+      );
+    }
+
+    const connectDB = (await import('@/lib/mongoose')).default;
+    const { Quote } = await import('@/lib/models/Quote');
+    
     await connectDB();
     
     const { searchParams } = new URL(request.url);
@@ -54,6 +63,17 @@ export async function GET(request: NextRequest) {
 // POST /api/quotes - Create a new quote
 export async function POST(request: NextRequest) {
   try {
+    // Check if MongoDB is configured
+    if (!process.env.MONGODB_URI) {
+      return NextResponse.json(
+        { success: false, error: 'MongoDB not configured' },
+        { status: 503 }
+      );
+    }
+
+    const connectDB = (await import('@/lib/mongoose')).default;
+    const { Quote } = await import('@/lib/models/Quote');
+    
     await connectDB();
     
     const body = await request.json();
