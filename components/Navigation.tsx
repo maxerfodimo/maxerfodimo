@@ -18,7 +18,7 @@ export default function Navigation({ currentPath }: NavigationProps) {
     { href: "/discipline", label: "discipline" },
     { href: "/motivation", label: "motivation" },
     { href: "/about", label: "about" },
-    { href: "/inspiration", label: "more inspiration" },
+    { href: "/random-quote", label: "random quote" },
   ];
 
   // Determine current page
