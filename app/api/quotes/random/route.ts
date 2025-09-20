@@ -1,5 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+// In-memory cache for quotes
+const quotesCache = new Map<string, any[]>();
+const cacheTimestamps = new Map<string, number>();
+const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+
 // Fallback quotes when MongoDB is not available
 const fallbackQuotes = [
   {
@@ -85,24 +90,38 @@ export async function GET(request: NextRequest) {
       
       await connectDB();
       
-      let query = {};
-      if (theme) {
-        query = { theme: theme.toLowerCase() };
-      }
-
-      // Get total count of quotes matching the query
-      const total = await Quote.countDocuments(query);
+      const themeKey = theme ? theme.toLowerCase() : 'all';
+      const now = Date.now();
       
-      if (total === 0) {
+      // Check if we have cached quotes for this theme
+      let quotes = quotesCache.get(themeKey);
+      const cacheTime = cacheTimestamps.get(themeKey);
+      
+      // If cache is empty or expired, fetch from database
+      if (!quotes || !cacheTime || (now - cacheTime) > CACHE_DURATION) {
+        let query = {};
+        if (theme) {
+          query = { theme: theme.toLowerCase() };
+        }
+        
+        // Fetch all quotes for this theme
+        quotes = await Quote.find(query).exec();
+        
+        // Cache the results
+        quotesCache.set(themeKey, quotes);
+        cacheTimestamps.set(themeKey, now);
+      }
+      
+      if (quotes.length === 0) {
         return NextResponse.json(
           { success: false, error: theme ? `No quotes found for theme: ${theme}` : 'No quotes found' },
           { status: 404 }
         );
       }
 
-      // Get a random quote
-      const randomIndex = Math.floor(Math.random() * total);
-      const randomQuote = await Quote.findOne(query).skip(randomIndex).exec();
+      // Get a random quote from cached quotes
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      const randomQuote = quotes[randomIndex];
 
       return NextResponse.json({
         success: true,
