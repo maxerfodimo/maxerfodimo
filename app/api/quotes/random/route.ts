@@ -5,6 +5,62 @@ const quotesCache = new Map<string, any[]>();
 const cacheTimestamps = new Map<string, number>();
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
+// Auto-sync function to check and update quotes from JSON files
+async function autoSyncQuotes() {
+  try {
+    if (!process.env.MONGODB_URI) return;
+    
+    const connectDB = (await import('@/lib/mongoose')).default;
+    const { Quote } = await import('@/lib/models/Quote');
+    
+    await connectDB();
+    
+    const themes = ['focus', 'motivation', 'dreams', 'plans', 'discipline'];
+    
+    for (const theme of themes) {
+      try {
+        const fs = await import('fs');
+        const path = await import('path');
+        
+        const filePath = path.join(process.cwd(), 'data', 'quotes', `${theme}.json`);
+        
+        if (!fs.existsSync(filePath)) continue;
+        
+        const fileContent = fs.readFileSync(filePath, 'utf8');
+        const jsonQuotes = JSON.parse(fileContent);
+        
+        if (!Array.isArray(jsonQuotes)) continue;
+        
+        const currentCount = await Quote.countDocuments({ theme });
+        const jsonCount = jsonQuotes.length;
+        
+        // Only sync if JSON has more quotes
+        if (jsonCount > currentCount) {
+          await Quote.deleteMany({ theme });
+          const quotesToInsert = jsonQuotes.map(quote => ({
+            ...quote,
+            theme: theme.toLowerCase()
+          }));
+          await Quote.insertMany(quotesToInsert);
+          
+          // Clear cache for this theme
+          quotesCache.delete(theme);
+          cacheTimestamps.delete(theme);
+          
+          console.log(`Auto-synced ${theme}: ${currentCount} → ${jsonCount} quotes`);
+        }
+      } catch (error) {
+        console.error(`Auto-sync error for ${theme}:`, error);
+      }
+    }
+  } catch (error) {
+    console.error('Auto-sync error:', error);
+  }
+}
+
+// Run auto-sync on first request
+let autoSyncRun = false;
+
 // Fallback quotes when MongoDB is not available
 const fallbackQuotes = [
   {
@@ -52,6 +108,12 @@ const fallbackQuotes = [
 // GET /api/quotes/random - Get a random quote
 export async function GET(request: NextRequest) {
   try {
+    // Run auto-sync on first request
+    if (!autoSyncRun) {
+      autoSyncRun = true;
+      autoSyncQuotes().catch(console.error);
+    }
+    
     const { searchParams } = new URL(request.url);
     const theme = searchParams.get('theme');
 
