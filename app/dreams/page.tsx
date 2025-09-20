@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ClientNavigation from "../../components/ClientNavigation";
 import QuoteCard from "../../components/QuoteCard";
+import { useGetRandomQuoteByTheme } from "../../hooks/useGetRandomQuoteByTheme";
 
 interface Quote {
   _id: string;
@@ -24,30 +25,10 @@ export default function DreamsPage() {
     updatedAt: new Date().toISOString()
   };
 
-  const [quote, setQuote] = useState<Quote>(defaultQuote);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  const fetchRandomQuote = async () => {
-    setLoading(true);
-    setError(null);
-    
-    try {
-      const response = await fetch('/api/quotes/random?theme=dreams');
-      const data = await response.json();
-      
-      if (data.success) {
-        setQuote(data.data);
-      } else {
-        setError(data.error || 'Failed to fetch quote');
-      }
-    } catch (err) {
-      setError('Failed to fetch quote');
-      console.error('Error fetching quote:', err);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { quote, loading, error, fetchRandomQuote } = useGetRandomQuoteByTheme({
+    theme: 'dreams',
+    defaultQuote
+  });
 
   return (
     <>
