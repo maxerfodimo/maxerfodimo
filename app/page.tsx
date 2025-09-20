@@ -1,7 +1,54 @@
-import React from "react";
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import ClientNavigation from "../components/ClientNavigation";
+import QuoteCard from "../components/QuoteCard";
+
+interface Quote {
+  _id: string;
+  text: string;
+  author?: string;
+  theme: string;
+  createdAt: string;
+  updatedAt: string;
+}
 
 export default function Page() {
+  // Hardcoded default quote
+  const defaultQuote: Quote = {
+    _id: 'default',
+    text: 'Stay focused, the result will come.',
+    author: 'Max Erfodimo',
+    theme: 'focus',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  };
+
+  const [quote, setQuote] = useState<Quote>(defaultQuote);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchRandomQuote = async () => {
+    setLoading(true);
+    setError(null);
+    
+    try {
+      const response = await fetch('/api/quotes/random?theme=focus');
+      const data = await response.json();
+      
+      if (data.success) {
+        setQuote(data.data);
+      } else {
+        setError(data.error || 'Failed to fetch quote');
+      }
+    } catch (err) {
+      setError('Failed to fetch quote');
+      console.error('Error fetching quote:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <ClientNavigation />
@@ -12,38 +59,16 @@ export default function Page() {
           alignItems: "center",
           flexDirection: "column",
           fontFamily: "Georgia",
-          marginTop: "100px",
+          padding:"8px",
+          minHeight: "70vh"
         }}
       >
-      
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-          fontSize: "24px",
-          gap: "10px",
-          padding: "0 8px",
-        }}
-      >
-        <h1 style={{
-          textAlign: "center",
-          fontSize: "clamp(2rem, 5vw, 2.5rem)",
-          lineHeight: "1.2",
-          margin: "0",
-          padding: "0 10px"
-        }}>
-          Stay focused...<br /> the result will come
-        </h1>
-        <h3 style={{ 
-          marginTop: "20px", 
-          marginLeft: "auto",
-          fontSize: "clamp(1.5rem, 3vw, 2rem)"
-        }}>
-          Max Erfodimo
-        </h3>
-      </div>
+        <QuoteCard 
+          quote={quote}
+          loading={loading}
+          error={error}
+          onNextQuote={fetchRandomQuote}
+        />
       </div>
     </>
   );

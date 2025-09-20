@@ -1,0 +1,104 @@
+/* Navigation Container */
+.nav {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 15px 0;
+  box-sizing: content-box;
+
+  @media (max-width: 768px) {
+    padding: 8px 0;
+  }
+}
+
+/* Navigation Container */
+.navContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  row-gap: 5px;
+  column-gap: 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 10px;
+  box-sizing: content-box;
+}
+
+/* Navigation Links */
+.navLink {
+  text-decoration: none;
+  color: #666;
+  font-size: 14px;
+  font-weight: normal;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+  padding: 8px 12px;
+  border-radius: 20px;
+  background-color: transparent;
+  border: 1px solid transparent;
+  box-sizing: content-box;
+}
+
+.navLink:hover {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Active Navigation Link */
+.navLink.active {
+  color: #333;
+  font-weight: bold;
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.navLink.active:hover {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav {
+    padding: 10px 0;
+    box-sizing: content-box;
+  }
+  
+  .navContainer {
+    padding: 0 8px;
+    gap: 8px;
+    box-sizing: content-box;
+  }
+  
+  .navLink {
+    font-size: 13px;
+    padding: 6px 10px;
+    box-sizing: content-box;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav {
+    padding: 8px 0;
+    box-sizing: content-box;
+  }
+  
+  .navContainer {
+    padding: 0 5px;
+    gap: 6px;
+    box-sizing: content-box;
+  }
+  
+  .navLink {
+    font-size: 12px;
+    padding: 5px 8px;
+    box-sizing: content-box;
+  }
+}
