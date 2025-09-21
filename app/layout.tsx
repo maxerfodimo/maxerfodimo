@@ -3,6 +3,7 @@ import CustomAnalytics from '../components/Analytics'
 import { Analytics } from "@vercel/analytics/next"
 import ClientOnlyAnalytics from '../components/ClientOnlyAnalytics'
 import StructuredData from '../components/StructuredData'
+import CanonicalTags from '../components/CanonicalTags'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -66,6 +67,9 @@ export default function RootLayout({
     return (
       <html lang="en">
         <head>
+          {/* Canonical tags for all URL variations */}
+          <CanonicalTags />
+          
           {/* Analytics scripts moved to client-only component */}
           <StructuredData />
         </head>

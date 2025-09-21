@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+
+# Canonical URL
+Host: https://maxerfodimo.com
+
+# Sitemap
+Sitemap: https://maxerfodimo.com/sitemap.xml
+
+# Disallow duplicate content
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin
+
+# Allow all other content
+Allow: /
