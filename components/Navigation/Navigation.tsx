@@ -17,6 +17,7 @@ export default function Navigation({ currentPath }: NavigationProps) {
     { href: "/plans", label: "plans" },
     { href: "/discipline", label: "discipline" },
     { href: "/motivation", label: "motivation" },
+    { href: "/program", label: "program" },
     { href: "/author", label: "author" },
     { href: "/about", label: "about focus" },
   ];
