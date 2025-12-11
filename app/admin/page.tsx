@@ -19,7 +19,7 @@ export default function AdminPage() {
   const handleSync = async (force = false) => {
     setLoading(true);
     setSyncStatus('Syncing...');
-    
+
     try {
       const response = await fetch('/api/quotes/sync', {
         method: 'POST',
@@ -28,9 +28,9 @@ export default function AdminPage() {
         },
         body: JSON.stringify({ force })
       });
-      
+
       const data = await response.json();
-      
+
       if (data.success) {
         setSyncStatus(`Sync completed! Synced: ${data.results.synced}, Skipped: ${data.results.skipped}, Errors: ${data.results.errors}`);
       } else {
@@ -85,7 +85,7 @@ export default function AdminPage() {
             >
               Access Denied
             </h1>
-            
+
             <div
               style={{
                 fontSize: "clamp(1.1rem, 3vw, 1.4rem)",
@@ -107,8 +107,8 @@ export default function AdminPage() {
                 borderRadius: "8px"
               }}
             >
-              <strong>Environment:</strong> {process.env.NODE_ENV}<br/>
-              <strong>Status:</strong> Production mode detected<br/>
+              <strong>Environment:</strong> {process.env.NODE_ENV}<br />
+              <strong>Status:</strong> Production mode detected<br />
               <strong>Access:</strong> Restricted to development only
             </div>
           </div>
@@ -126,7 +126,7 @@ export default function AdminPage() {
           justifyContent: "center",
           alignItems: "center",
           flexDirection: "column",
-          fontFamily: "Georgia",
+          fontFamily: "Lato",
           padding: "8px",
           minHeight: "70vh"
         }}
@@ -157,7 +157,7 @@ export default function AdminPage() {
           >
             Admin Panel
           </h1>
-          
+
           <div
             style={{
               fontSize: "clamp(1.1rem, 3vw, 1.4rem)",
@@ -195,7 +195,7 @@ export default function AdminPage() {
             >
               {loading ? 'Syncing...' : 'Sync Quotes'}
             </button>
-            
+
             <button
               onClick={() => handleSync(true)}
               disabled={loading}
@@ -239,11 +239,11 @@ export default function AdminPage() {
               textAlign: "left"
             }}
           >
-            <strong>Development Mode Features:</strong><br/>
-            • <strong>Sync Quotes:</strong> Only updates if JSON has more quotes than DB<br/>
-            • <strong>Force Sync:</strong> Always updates from JSON files<br/>
-            • JSON files are in: <code>data/quotes/</code> folder<br/>
-            • Themes: focus, motivation, dreams, plans, discipline<br/>
+            <strong>Development Mode Features:</strong><br />
+            • <strong>Sync Quotes:</strong> Only updates if JSON has more quotes than DB<br />
+            • <strong>Force Sync:</strong> Always updates from JSON files<br />
+            • JSON files are in: <code>data/quotes/</code> folder<br />
+            • Themes: focus, motivation, dreams, plans, discipline<br />
             • <strong>Environment:</strong> {process.env.NODE_ENV}
           </div>
         </div>

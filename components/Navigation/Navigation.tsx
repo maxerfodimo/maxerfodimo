@@ -9,17 +9,13 @@ interface NavigationProps {
 
 export default function Navigation({ currentPath }: NavigationProps) {
   const pathname = usePathname();
-  
+
   // Define all navigation links
   const navLinks = [
     { href: "/", label: "focus" },
-    { href: "/dreams", label: "dreams" },
-    { href: "/plans", label: "plans" },
-    { href: "/discipline", label: "discipline" },
-    { href: "/motivation", label: "motivation" },
+    { href: "/quotes", label: "quotes" },
     { href: "/program", label: "program" },
-    { href: "/author", label: "author" },
-    { href: "/about", label: "about focus" },
+    { href: "/contact", label: "contact" },
   ];
 
   // Determine current page
@@ -28,19 +24,29 @@ export default function Navigation({ currentPath }: NavigationProps) {
   return (
     <nav className={styles.nav}>
       <div className={styles.navContainer}>
-        {navLinks.map((link) => {
-          const isActive = activePath === link.href;
-          
-          return (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`${styles.navLink} ${isActive ? styles.active : ''}`}
-            >
-              {link.label}
-            </Link>
-          );
-        })}
+        <blockquote className={styles.mainQuote} cite="https://example.com/original-article">
+          <p className={styles.mainQuote}>
+            Stay focused, the result will come.
+          </p>
+          <footer className={styles.mainQuoteAuthor}>
+            — <cite>Max Erfodimo</cite>
+          </footer>
+        </blockquote>
+        <div>
+          {navLinks.map((link) => {
+            const isActive = activePath === link.href;
+
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`${styles.navLink} ${isActive ? styles.active : ''}`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
+        </div>
       </div>
     </nav>
   );
