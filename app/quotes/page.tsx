@@ -1,9 +1,11 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import ClientNavigation from "../../components/ClientNavigation";
-import QuoteCard from "../../components/QuoteCard";
+import QuoteCardBasic from "../../components/QuoteCardBasic/QuoteCardBasic";
 import { useGetRandomQuoteByTheme } from "../../hooks/useGetRandomQuoteByTheme";
+import { useGetQuotes } from '@/hooks/useGetQuotes';
+
 
 interface Quote {
   _id: string;
@@ -15,6 +17,12 @@ interface Quote {
 }
 
 export default function DisciplinePage() {
+
+  const { quotes, fetchQuotes } = useGetQuotes();
+
+  useEffect(() => {
+    fetchQuotes();
+  }, [fetchQuotes]);
   // Hardcoded default quote for discipline
   const defaultQuote: Quote = {
     _id: 'default-discipline',
@@ -44,12 +52,13 @@ export default function DisciplinePage() {
           minHeight: "70vh"
         }}
       >
-        <QuoteCard 
-          quote={quote}
-          loading={loading}
-          error={error}
-          onNextQuote={fetchRandomQuote}
-        />
+
+        {quotes.map((quote) => (
+          <QuoteCardBasic
+            key={quote._id}
+            quote={quote}
+          />
+        ))}
       </div>
     </>
   );
