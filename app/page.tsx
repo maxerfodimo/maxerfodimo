@@ -4,7 +4,6 @@ import React, { useEffect } from 'react';
 import Link from 'next/link';
 import ClientNavigation from "../components/ClientNavigation";
 import QuoteCardBasic from "../components/QuoteCardBasic/QuoteCardBasic";
-import { useGetRandomQuoteByTheme } from "../hooks/useGetRandomQuoteByTheme";
 import { useGetQuotes } from '@/hooks/useGetQuotes';
 
 interface Quote {
@@ -28,7 +27,8 @@ export default function Page() {
     <>
       <ClientNavigation />
       <div style={{ display: "flex", maxWidth: "800px", margin: "0 auto", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
-        <h1 style={{ marginTop: "30px", marginBottom: "15px", color: "#333" }}>Focus it's your friend, focus is your weapon</h1>
+        <h1 style={{ marginTop: "30px", marginBottom: "15px", color: "#333", textAlign: "center" }}>I'm here to inspire you and give you instrument to follow your dreams. And it's focus...</h1>
+        <img src="/images/success.png" alt="success" />
         <p style={{ fontSize: "18px", color: "#444" }}>
           In today's digital age, maintaining focus has become one of the most challenging yet crucial skills for success and personal fulfillment.
         </p>
@@ -42,18 +42,17 @@ export default function Page() {
           countless distractions, making it nearly impossible to make significant progress in any area of our lives.
         </p>
         <p style={{ fontSize: "18px", color: "#444" }}>
-          Let's get started on your goals, we will help you to achieve them with our program. <Link href="/program">Program</Link> is a 12-day program that will help you to achieve your goals.
+          Let's get started on your goals, we will help you to achieve them with our program. <Link style={{ color: "black", fontWeight: "bold" }} href="/program">Program</Link> is a 12-day program that will help you to achieve your goals.
         </p>
-        {quotes.filter((quote) => quote.author === 'Max Erfodimo').map((quote) => (
-          <QuoteCardBasic
-            key={quote._id}
-            quote={quote}
-          />
-        ))}
+        <div style={{ display: "flex", "flexDirection": "column", gap: "10px" }}>
+          {quotes.filter((quote) => quote.author === 'Max Erfodimo').map((quote) => (
+            <QuoteCardBasic
+              key={quote._id}
+              quote={quote}
+            />
+          ))}
+        </div>
       </div>
-
-
-
     </>
   );
 }

@@ -49,6 +49,7 @@ export default function DisciplinePage() {
           flexDirection: "column",
           fontFamily: "Georgia",
           padding: "8px",
+          gap: "14px",
           minHeight: "70vh"
         }}
       >

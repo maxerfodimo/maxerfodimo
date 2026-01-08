@@ -4,17 +4,17 @@ import React, { useState, useEffect } from 'react';
 import ClientNavigation from "../../components/ClientNavigation";
 
 export default function AdminPage() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [syncStatus, setSyncStatus] = useState<string>('');
   const [loading, setLoading] = useState(false);
 
-  // Check if admin access is enabled (development mode only)
-  useEffect(() => {
-    // Only allow access in development mode
-    if (process.env.NODE_ENV === 'development') {
-      setIsAuthenticated(true);
-    }
-  }, []);
+  // // Check if admin access is enabled (development mode only)
+  // useEffect(() => {
+  //   // Only allow access in development mode
+  //   if (process.env.NODE_ENV === 'development') {
+  //     setIsAuthenticated(true);
+  //   }
+  // }, []);
 
   const handleSync = async (force = false) => {
     setLoading(true);
