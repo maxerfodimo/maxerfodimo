@@ -5,6 +5,7 @@ import Link from 'next/link';
 import ClientNavigation from "../components/ClientNavigation";
 import QuoteCardBasic from "../components/QuoteCardBasic/QuoteCardBasic";
 import { useGetQuotes } from '@/hooks/useGetQuotes';
+import styles from "./styles/HomePage.module.css"
 
 interface Quote {
   _id: string;
@@ -28,7 +29,7 @@ export default function Page() {
       <ClientNavigation />
       <div style={{ display: "flex", maxWidth: "800px", margin: "0 auto", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
         <h1 style={{ marginTop: "30px", marginBottom: "15px", color: "#333", textAlign: "center" }}>I'm here to inspire you and give you instrument to follow your dreams. And it's focus...</h1>
-        <img src="/images/success.png" alt="success" />
+        <img className={styles.image} src="/images/success.png" alt="success" />
         <p style={{ fontSize: "18px", color: "#444" }}>
           In today's digital age, maintaining focus has become one of the most challenging yet crucial skills for success and personal fulfillment.
         </p>

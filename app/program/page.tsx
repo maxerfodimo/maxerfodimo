@@ -1,6 +1,7 @@
 'use client';
 
 import React from "react";
+import styles from "./styles/ProgramPage.module.css"
 import ClientNavigation from "../../components/ClientNavigation";
 
 export default function ProgramPage() {
@@ -8,15 +9,7 @@ export default function ProgramPage() {
         <>
             <ClientNavigation />
             <div
-                style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    fontFamily: "Georgia",
-                    padding: "40px",
-                    maxWidth: "1000px",
-                    margin: "0 auto",
-                    lineHeight: "1.6",
-                }}
+                className={styles.content}
             >
                 <h1
                     style={{
@@ -38,12 +31,7 @@ export default function ProgramPage() {
                 >
                     {/* Focus Basic - 12 */}
                     <div
-                        style={{
-                            border: "2px solid #333",
-                            borderRadius: "8px",
-                            padding: "30px",
-                            backgroundColor: "#f9f9f9",
-                        }}
+                        className={styles.card}
                     >
                         <h2
                             style={{
@@ -109,12 +97,8 @@ export default function ProgramPage() {
 
                     {/* Focus Advanced - 123 */}
                     <div
-                        style={{
-                            border: "2px solid #333",
-                            borderRadius: "8px",
-                            padding: "30px",
-                            backgroundColor: "#f9f9f9",
-                        }}
+                        className={styles.card}
+
                     >
                         <h2
                             style={{
@@ -185,12 +169,8 @@ export default function ProgramPage() {
 
                     {/* Focus Pro - 1234 */}
                     <div
-                        style={{
-                            border: "2px solid #333",
-                            borderRadius: "8px",
-                            padding: "30px",
-                            backgroundColor: "#f9f9f9",
-                        }}
+                        className={styles.card}
+
                     >
                         <h2
                             style={{
