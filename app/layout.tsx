@@ -4,7 +4,13 @@ import { Analytics } from "@vercel/analytics/next"
 import ClientOnlyAnalytics from '../components/ClientOnlyAnalytics'
 import StructuredData from '../components/StructuredData'
 import CanonicalTags from '../components/CanonicalTags'
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+}
 
 export const metadata: Metadata = {
   title: 'Stay Focused – Motivational Quote by Max Erfodimo',
@@ -27,6 +33,7 @@ export const metadata: Metadata = {
       { url: '/images/maxerfodimoicon.jpg', sizes: '180x180', type: 'image/jpeg' },
     ],
   },
+  manifest: '/manifest.json',
   openGraph: {
     title: 'Stay Focused – Motivational Quote by Max Erfodimo',
     description: 'Stay focused and the result will come. A motivational quote to inspire persistence, discipline, and success.',

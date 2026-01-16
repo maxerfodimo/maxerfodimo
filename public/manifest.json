@@ -1,0 +1,25 @@
+{
+  "name": "Max Erfodimo - Stay Focused",
+  "short_name": "Max Erfodimo",
+  "description": "Stay focused and the result will come. Motivational quotes and programs by Max Erfodimo.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/images/maxerfodimoicon.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/maxerfodimoicon.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
+
